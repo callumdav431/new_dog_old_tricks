@@ -1,3 +1,9 @@
-newdogoldtricks.dev
-newdog.dev
-oldtricks.dev
+md
+
+#domain name ideas
+
+- newdogoldtricks.dev
+- newdog.dev
+- oldtricks.dev
+
+
