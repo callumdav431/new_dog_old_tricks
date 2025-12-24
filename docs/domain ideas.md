@@ -1,6 +1,6 @@
 md
 
-#domain name ideas
+# domain name ideas
 
 - newdogoldtricks.dev
 - newdog.dev
