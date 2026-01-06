@@ -1,4 +1,12 @@
+"use client";
+import { useState } from "react";
+
+
+
 export default function Home() {
+
+  const [selectedLesson, setSelectedLesson] = useState("Alan");
+
   return (
 
 
@@ -33,37 +41,77 @@ export default function Home() {
         </section>
 
 
+
+
+
+
+
+<section id="masterclass">
+  <h2 className="text-2xl font-semibold">Lessons</h2>
+
+  <p className="mt-2 text-white/70">
+    Different salespeople. Their stories — built as short practical modules.
+  </p>
+
+  <p className="mt-3 text-sm text-white/60">
+    Selected lesson:{" "}
+    <span className="text-white/90">{selectedLesson}</span>
+  </p>
+
+  <div className="mt-6 grid gap-4 md:grid-cols-3">
+    <article
+      role="button"
+      tabIndex={0}
+      onClick={() => setSelectedLesson("Alan")}
+      className={
+        "cursor-pointer rounded-xl border p-5 transition " +
+        (selectedLesson === "Alan"
+          ? "border-white/40 bg-white/10"
+          : "border-white/10 bg-white/5 hover:bg-white/10")
+      }
+    >
+      <h3 className="text-lg font-semibold">Alan</h3>
+      <p className="mt-2 text-sm text-white/70">
+        Salesman for blah blah blah
+      </p>
+    </article>
+
+    <article
+      role="button"
+      tabIndex={0}
+      onClick={() => setSelectedLesson("Richard")}
+      className={
+        "cursor-pointer rounded-xl border p-5 transition " +
+        (selectedLesson === "Richard"
+          ? "border-white/40 bg-white/10"
+          : "border-white/10 bg-white/5 hover:bg-white/10")
+      }
+    >
+      <h3 className="text-lg font-semibold">Richard</h3>
+      <p className="mt-2 text-sm text-white/70">
+        Owner of multiple high-end restaurant-hotels
+      </p>
+    </article>
+
+    <article
+      role="button"
+      tabIndex={0}
+      onClick={() => setSelectedLesson("Rory")}
+      className={
+        "cursor-pointer rounded-xl border p-5 transition " +
+        (selectedLesson === "Rory"
+          ? "border-white/40 bg-white/10"
+          : "border-white/10 bg-white/5 hover:bg-white/10")
+      }
+    >
+      <h3 className="text-lg font-semibold">Rory</h3>
+      <p className="mt-2 text-sm text-white/70">
+        rory sutherland is a hero of mine
         
-
-        <section id="masterclass">
-          <h2 className="text-2xl font-semibold">Lessons</h2>
-
-          <p>Different salesman. Their stories - built as short practical modules.</p>
-         <div className="mt-6 grid gap-4 md:grid-cols-3">
-            <article className="rounded-xl border border-white/10 bg-white/5 p-5">
-               <h3 className="text-lg font-semibold">Alan</h3>
-               <p className="mt-2 text-sm text-white/70">Salesman for blah blah blah</p>
-               </article>
-
-          <article className="rounded-xl border border-white/10 bg-white/5 p-5">
-            <h3 className="text-lg font-semibold">Richard</h3>
-            <p className="mt-2 text-sm text-white/70">
-             Owner of multiple high-end restaurant-hotels
-             </p>
-            </article>
-
-           <article className="rounded-xl border border-white/10 bg-white/5 p-5">
-              <h3 className="text-lg font-semibold">blank</h3>
-              <p className="mt-2 text-sm text-white/70">
-                
-                </p>
-              </article>
-            </div>
-
-
-
-        </section>
-
+      </p>
+    </article>
+  </div>
+</section>
 
 
 
