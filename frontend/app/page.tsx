@@ -1,51 +1,40 @@
 "use client";
 import { useState } from "react";
 
-
 export default function Home() {
   const [selectedLesson, setSelectedLesson] = useState("Alan");
 
   const lessons = [
-    { title: "Alan", description: "Salesman for blah blah blah" },
-    { title: "Richard", description: "Owner of multiple high-end restaurant-hotels" },
-    { title: "rory (hopefully)", description: "TBF" },
+    { title: "Alan", description: "Salesman for blah blah blah", href: "/lessons/alan" },
+    { title: "Richard", description: "Owner of multiple high-end restaurant-hotels", href: "#" },
+    { title: "rory (hopefully)", description: "TBF", href: "#" },
   ];
-
-
-
-
-
-
 
   return (
     <div className="min-h-screen bg-neutral-950 text-neutral-100">
       <div className="mx-auto max-w-5xl px-6">
-
-
         <main className="mt-12 space-y-16">
           {/* Hero */}
-<section className="min-h-screen flex items-center">
-  <div className= "-mt-24">
-<h1 className="text-6xl font-semibold tracking-tight leading-[1.05] md:text-8xl">
-      New Dog, Old Tricks
-    </h1>
+          <section className="min-h-screen flex items-center">
+            <div className="-mt-24">
+              <h1 className="text-6xl font-semibold tracking-tight leading-[1.05] md:text-8xl">
+                New Dog, Old Tricks
+              </h1>
 
-    <p className="mt-6 max-w-2xl text-lg text-white/70 md:text-xl">
-      Old-school persuasion. Modern execution. A learning site for personal growth, development and interest.
-    </p>
+              <p className="mt-6 max-w-2xl text-lg text-white/70 md:text-xl">
+                Old-school persuasion. Modern execution. A learning site for personal growth, development and interest.
+              </p>
 
-<p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/70 md:text-xl">
-      Scroll to begin 
-    </p>
-  </div>
-</section>
-
-
+              <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/70 md:text-xl">
+                Scroll to begin
+              </p>
+            </div>
+          </section>
 
           {/* Big CTA */}
           <section
             id="start"
-            className="rounded-2xl border border-white/10 bg-white/5 p-6 md:p-8"
+            className="mb-60 rounded-2xl border border-white/10 bg-white/5 p-6 md:p-8"
           >
             <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
               <div>
@@ -76,14 +65,14 @@ export default function Home() {
               Selected lesson: <span className="text-white/90">{selectedLesson}</span>
             </p>
 
-            <div className="mt-6 grid gap-4 md:grid-cols-3">
-              {lessons.map((lesson) => (
-                <LessonCard
+            <div className="mt-15">
+              {lessons.map((lesson, idx) => (
+                <LessonWedge
                   key={lesson.title}
                   title={lesson.title}
                   description={lesson.description}
-                  selected={selectedLesson === lesson.title}
-                  onSelect={() => setSelectedLesson(lesson.title)}
+                  href={lesson.href}
+                  index={idx}
                 />
               ))}
             </div>
@@ -100,14 +89,69 @@ export default function Home() {
           </section>
         </main>
 
-        <footer id="about" className="mt-16 border-t border-white/10 pt-8 text-sm text-white/70">
+        <footer
+          id="about"
+          className="mt-16 border-t border-white/10 pt-8 text-sm text-white/70"
+        >
           <p>
-            Built as a personal project. The content from these lessons are from my own research,
-            interviews and extrapolation.
+            Built as a personal project. The content from these lessons are from my own research, interviews and extrapolation.
           </p>
         </footer>
       </div>
     </div>
+  );
+}
+
+function LessonWedge({
+  title,
+  description,
+  href,
+  index,
+}: {
+  title: string;
+  description: string;
+  href: string;
+  index: number;
+}) {
+  const pointsRight = "polygon(0% 0%, 0% 100%, 100% 50%)"; // true triangle →
+  const pointsLeft = "polygon(100% 0%, 100% 100%, 0% 50%)"; // true triangle ←
+  const isRight = index % 2 === 0;
+
+  // Overlap like your sketch (3 wedges)
+  const overlap = index === 0 ? "" : "-mt-19";
+
+  return (
+    <a
+      href={href}
+      className={[
+        "relative block",
+        "h-[140px] md:h-[170px]",
+        "transition-transform duration-200 ease-out",
+        "hover:-translate-y-1 active:translate-y-0",
+        overlap,
+      ].join(" ")}
+    >
+      {/* The triangle shape */}
+      <div
+        style={{ clipPath: isRight ? pointsRight : pointsLeft }}
+        className="absolute inset-0 border border-white/15 bg-white/5"
+      />
+
+      {/* Content area (NOT clipped) */}
+      <div
+        className={[
+          "relative z-10 h-full",
+          "flex flex-col justify-center",
+          isRight 
+            ? "pl-8 pr-24 md:pr-40 text-left" 
+            : "pl-24 md:pl-40 pr-8 text-right items end",
+        ].join(" ")}
+      >
+        <h3 className="text-2xl font-semibold tracking-tight">{title}</h3>
+        <p className="mt-2 text-sm text-white/70">{description}</p>
+        <p className="mt-4 text-sm font-semibold text-white/80">Start →</p>
+      </div>
+    </a>
   );
 }
 
